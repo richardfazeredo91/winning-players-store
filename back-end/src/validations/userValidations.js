@@ -28,7 +28,7 @@ const validateCredentials = (email, password) => {
       return errors.emptyPassword;
     case isValidPassword(password):
       return errors.weakPassword;
-    default: return {};
+    default: return true;
   }
 };
 

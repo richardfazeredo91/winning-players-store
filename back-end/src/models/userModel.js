@@ -3,7 +3,7 @@ const mongoConnection = require('../connections/mongoConnection');
 const createUser = async (user) => {
   const usersCollection = await mongoConnection.getConnection()
     .then((db) => db.collection('users'));
-
+  console.log(usersCollection);
   const { insertedId: id } = await usersCollection
     .insertOne(user);
 

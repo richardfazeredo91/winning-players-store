@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const { payloadUser } = require('../mocks/userMock');
-const UserModel = require('../../src/models/userModel');
+const userModel = require('../../src/models/userModel');
 const { MongoClient } = require('mongodb');
 const { getConnection } = require('../mocks/mongoConnection');
 
@@ -24,19 +24,19 @@ describe('Insere um novo usuário no Banco de dados', () => {
 
   describe('quando é inserido com sucesso', () => {
     it('retorna um objeto', async () => {
-      const response = await UserModel.createUser(payloadUser);
+      const response = await userModel.createUser(payloadUser);
 
       expect(response).to.be.a('object');
     });
 
     it('tal objeto possui o "id" do novo usuário inserido', async () => {
-      const response = await UserModel.createUser(payloadUser);
+      const response = await userModel.createUser(payloadUser);
 
       expect(response).to.have.a.property('id');
     });
     
     it('deve existir um usuário com o email cadastrado!', async () => {
-      await UserModel.createUser(payloadUser);
+      await userModel.createUser(payloadUser);
 
       const userCreated = await connectionMock
         .db('WinningPlayers')
@@ -46,7 +46,7 @@ describe('Insere um novo usuário no Banco de dados', () => {
     });
 
     it('tal usuário deve ter login e password cadastrados', async () => {
-      await UserModel.createUser(payloadUser);
+      await userModel.createUser(payloadUser);
 
       const userCreated = await connectionMock
         .db('WinningPlayers')

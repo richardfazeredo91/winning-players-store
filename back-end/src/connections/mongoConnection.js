@@ -6,9 +6,9 @@ const OPTIONS = {
   useUnifiedTopology: true,
 };
 
-const MONGO_DB_URL = `mongodb://${process.env.HOST || 'mongodb'}:27017/WinningPlayers`;
-
+const { HOST } = process.env;
 const DB_NAME = 'WinningPlayers';
+const MONGO_DB_URL = `mongodb://${HOST || 'mongodb'}:27017/${DB_NAME}`;
 
 let db = null;
 
